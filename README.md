@@ -1,8 +1,10 @@
 # 候車 · 香港巴士（網頁版）
 
-Standalone HTTPS static site — **no ChatGPT login**.
+**Live HTTPS (no ChatGPT login):** https://tenhi98.github.io/
 
-Built from private Android handoff branch `handoff/web-v2-20261030` @ `31a20ac7489b3a30ce1f5258213794e7d40d4a1f`.
+Also mirrored at https://github.com/Tenhi98/houche-hk-web
+
+Built from private Android handoff `handoff/web-v2-20261030` @ `31a20ac7489b3a30ce1f5258213794e7d40d4a1f`.
 
 ## Features
 - Nearby stops, live ETA (KMB/LWB, CTB, NLB, MTR Bus, GMB)
@@ -10,11 +12,15 @@ Built from private Android handoff branch `handoff/web-v2-20261030` @ `31a20ac74
 - A→B rough journey time estimates (not live traffic)
 
 ## Data
-- `network.json` snapshot blob `56dd53755ebc94904b5b6fa4e0dd0f48a12ebd1e` (2026-10-28 Android repo snapshot)
+- Snapshot blob `56dd53755ebc94904b5b6fa4e0dd0f48a12ebd1e` (2026-10-28 Android `network.json`)
+- Served as `parts/network.part00.txt` … `part09.txt` (assembled in `app.js`) because a single 8MB file exceeds some push limits
 - 3783 routes, 15355 stops
+- Falls back to HK Bus Crawling CDN when reachable
 
-## Local preview
-Serve this directory over HTTP(S). No build step.
+## China / company network notes
+- Site host is `github.io` (Cloudflare-backed GitHub Pages). Often reachable, but some mainland/corp filters still block `*.github.io` — please test on the company PC.
+- Live ETA calls HK government / operator APIs (`data.gov.hk`, etagmb, etc.); those may be blocked separately even if the static UI loads.
+- Google Fonts removed (system CJK stack). OSM map tiles may also be filtered.
 
-## License notes
-Upstream Android app is GPL-3.0. Leaflet and data-project licenses are included in this tree.
+## License
+Upstream Android app GPL-3.0. Leaflet and data-project licenses included.
